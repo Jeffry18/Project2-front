@@ -54,6 +54,13 @@ function Navbar() {
         </nav>
 
         <Link
+          to="/register"
+          className="rounded-xl border border-blue-600 px-5 py-2 font-medium text-blue-600 transition hover:bg-blue-50"
+        >
+          Create Organization
+        </Link>
+
+        <Link
           to="/login"
           className="rounded-xl bg-blue-600 px-5 py-2 text-white transition hover:bg-blue-700"
         >

@@ -13,7 +13,7 @@ function Landing() {
       <Hero />
       <Features />
       <Workflow />
-        <TechStack />
+      <TechStack />
       <CTA />
       <Footer />
     </div>

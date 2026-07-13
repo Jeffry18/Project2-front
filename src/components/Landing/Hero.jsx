@@ -49,13 +49,20 @@ function Hero() {
           <div className="mt-10 flex flex-wrap gap-4">
 
             <Link
-              to="/login"
+              to="/register"
               className="flex items-center gap-2 rounded-xl bg-blue-600 px-7 py-4 font-semibold text-white transition hover:bg-blue-700"
             >
-              Get Started
+              Create Organization
 
               <ArrowRight size={18} />
 
+            </Link>
+
+            <Link
+              to="/login"
+              className="rounded-xl border border-slate-300 px-7 py-4 font-semibold hover:bg-slate-100"
+            >
+              Login
             </Link>
 
             <a
