@@ -5,6 +5,7 @@ import TicketRow from "./TicketRow";
 import ViewTicketModal from "./ViewTicketModal";
 import EditTicketModal from "./EditTicketModal";
 import DeleteTicketModal from "./DeleteTicketModal";
+import ManageTicketModal from "./ManageTicketModal";
 
 function TicketTable({
   search,
@@ -25,6 +26,7 @@ function TicketTable({
   const [viewOpen, setViewOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [manageOpen, setManageOpen] = useState(false);
 
   const tickets = data?.data || [];
 
@@ -41,6 +43,11 @@ function TicketTable({
   const handleDelete = (ticket) => {
     setSelectedTicket(ticket);
     setDeleteOpen(true);
+  };
+
+  const handleManage = (ticket) => {
+    setSelectedTicket(ticket);
+    setManageOpen(true);
   };
 
   if (isLoading) {
@@ -85,6 +92,7 @@ function TicketTable({
                 <td
                   colSpan={6}
                   className="py-12 text-center"
+
                 >
                   <div className="flex flex-col items-center gap-2">
                     <h3 className="text-lg font-semibold text-slate-700">
@@ -105,6 +113,7 @@ function TicketTable({
                   onView={handleView}
                   onEdit={handleEdit}
                   onDelete={handleDelete}
+                  onManage={handleManage}
                 />
               ))
             )}
@@ -153,6 +162,15 @@ function TicketTable({
         isOpen={editOpen}
         onClose={() => {
           setEditOpen(false);
+          setSelectedTicket(null);
+        }}
+      />
+
+      <ManageTicketModal
+        isOpen={manageOpen}
+        ticket={selectedTicket}
+        onClose={() => {
+          setManageOpen(false);
           setSelectedTicket(null);
         }}
       />

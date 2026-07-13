@@ -19,7 +19,7 @@ function TicketForm({ mode = "create", ticket = null, onSuccess, }) {
     defaultValues: {
       subject: ticket?.subject || "",
       description: ticket?.description || "",
-      status: ticket?.status || "open",
+      
     },
   });
 
@@ -31,7 +31,7 @@ function TicketForm({ mode = "create", ticket = null, onSuccess, }) {
       reset({
         subject: ticket.subject,
         description: ticket.description,
-        status: ticket.status,
+        
       });
     }
   }, [ticket, reset]);
@@ -119,31 +119,6 @@ function TicketForm({ mode = "create", ticket = null, onSuccess, }) {
           className="w-full rounded-xl border p-3 focus:border-blue-500 focus:outline-none"
           placeholder="Describe the issue..."
         />
-
-        {mode === "edit" && (
-          <div>
-            <label className="mb-2 block font-medium">
-              Status
-            </label>
-
-            <select
-              {...register("status")}
-              className="w-full rounded-xl border p-3"
-            >
-              <option value="open">
-                Open
-              </option>
-
-              <option value="in-progress">
-                In Progress
-              </option>
-
-              <option value="closed">
-                Closed
-              </option>
-            </select>
-          </div>
-        )}
 
         {errors.description && (
           <p className="mt-1 text-sm text-red-500">

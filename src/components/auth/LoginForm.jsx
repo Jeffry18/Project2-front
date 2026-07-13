@@ -91,7 +91,7 @@ function LoginForm() {
 
                     {...register("email")}
 
-                    className="w-full rounded-lg border p-3 outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
 
                     placeholder="john@example.com"
 
@@ -127,7 +127,7 @@ function LoginForm() {
 
                         {...register("password")}
 
-                        className="w-full rounded-lg border p-3 pr-12 outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 outline-none transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
 
                         placeholder="••••••••"
 
@@ -179,7 +179,7 @@ function LoginForm() {
 
                 disabled={isSubmitting}
 
-                className="flex w-full items-center justify-center rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700 disabled:opacity-60"
+                className="flex w-full items-center justify-center rounded-xl bg-blue-600 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg disabled:opacity-60"
 
             >
 

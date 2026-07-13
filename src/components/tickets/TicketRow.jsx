@@ -1,8 +1,10 @@
 import {
   Eye,
   Pencil,
-  Trash2
+  Settings,
 } from "lucide-react";
+
+import { useAuth } from "../../context/AuthContext";
 
 import StatusBadge from "../common/StatusBadge";
 import UrgencyBadge from "../common/UrgencyBadge";
@@ -12,83 +14,106 @@ function TicketRow({
   ticket,
   onView,
   onEdit,
-  onDelete,
+  onManage,
 }) {
+  const {
+    isAdmin,
+    isAgent,
+    isUser,
+  } = useAuth();
+
+  const canEdit =
+    isUser &&
+    ticket.status === "open";
+
   return (
     <tr className="border-t hover:bg-slate-50">
+
+      {/* Subject */}
 
       <td className="px-6 py-4">
 
         <p className="font-semibold">
-
           {ticket.subject}
-
         </p>
 
         <p className="text-xs text-slate-500">
-
           ID: {ticket._id.slice(-6)}
-
         </p>
 
       </td>
 
-      <td className="px-6 py-4">
+      {/* Status */}
 
+      <td className="px-6 py-4">
         <StatusBadge
           status={ticket.status}
         />
-
       </td>
 
-      <td className="px-6 py-4">
+      {/* Category */}
 
+      <td className="px-6 py-4">
         <CategoryBadge
           category={ticket.aiMeta?.category}
         />
-
       </td>
 
-      <td className="px-6 py-4">
+      {/* Urgency */}
 
+      <td className="px-6 py-4">
         <UrgencyBadge
           score={ticket.aiMeta?.urgencyScore}
         />
-
       </td>
 
-      <td className="px-6 py-4">
+      {/* Created */}
 
+      <td className="px-6 py-4">
         {new Date(
           ticket.createdAt
         ).toLocaleString()}
-
       </td>
+
+      {/* Actions */}
 
       <td className="px-6 py-4">
 
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
+
+          {/* View */}
 
           <button
             onClick={() => onView(ticket)}
-            className="text-blue-600 hover:text-blue-800"
+            className="text-blue-600 transition hover:text-blue-800"
+            title="View Ticket"
           >
             <Eye size={18} />
           </button>
 
-          <button
-            onClick={() => onEdit(ticket)}
-            className="text-green-600 hover:text-green-800"
-          >
-            <Pencil size={18} />
-          </button>
+          {/* User Edit */}
 
-          <button
-            onClick={() => onDelete(ticket)}
-            className="text-red-600 hover:text-red-800"
-          >
-            <Trash2 size={18} />
-          </button>
+          {canEdit && (
+            <button
+              onClick={() => onEdit(ticket)}
+              className="text-green-600 transition hover:text-green-800"
+              title="Edit Ticket"
+            >
+              <Pencil size={18} />
+            </button>
+          )}
+
+          {/* Admin / Agent Manage */}
+
+          {(isAdmin || isAgent) && (
+            <button
+              onClick={() => onManage(ticket)}
+              className="text-orange-600 transition hover:text-orange-800"
+              title="Manage Ticket"
+            >
+              <Settings size={18} />
+            </button>
+          )}
 
         </div>
 

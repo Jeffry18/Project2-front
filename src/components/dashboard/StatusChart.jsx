@@ -9,10 +9,10 @@ import {
     Cell,
 } from "recharts";
 
-import { useDashboard } from "../../hooks/useDashboard";
+import { useDashboardAnalytics } from "../../hooks/useDashboardAnalytics";
 
 function StatusChart() {
-    const { data } = useDashboard();
+    const { data } = useDashboardAnalytics();
 
     const formatStatus = (status) => {
         switch (status) {
